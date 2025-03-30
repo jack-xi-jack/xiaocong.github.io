@@ -1,0 +1,313 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>配置环境(RHEL) | Hexo</title><meta name="author" content="John Doe"><meta name="copyright" content="John Doe"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="如果操作系统环境为CentOS、Red Hat、Rocky Linux、Alma Linux、Fedora等RHEL系列操作系统，使用以下步骤操作。  基础环境配置（所有节点） ---  修改主机名与hosts文件 ---  1234567[root@k8s-master ~]# hostnamectl set-hostname k8s-master[root@k8s-master ~]# vi">
+<meta property="og:type" content="article">
+<meta property="og:title" content="配置环境(RHEL)">
+<meta property="og:url" content="http://example.com/2025/03/11/1.%E9%85%8D%E7%BD%AE%E7%8E%AF%E5%A2%83(RHEL)/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="如果操作系统环境为CentOS、Red Hat、Rocky Linux、Alma Linux、Fedora等RHEL系列操作系统，使用以下步骤操作。  基础环境配置（所有节点） ---  修改主机名与hosts文件 ---  1234567[root@k8s-master ~]# hostnamectl set-hostname k8s-master[root@k8s-master ~]# vi">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/%E5%B0%8F%E5%B1%81%E8%82%A1.jpg">
+<meta property="article:published_time" content="2025-03-11T10:00:00.000Z">
+<meta property="article:modified_time" content="2025-03-30T13:09:06.407Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/%E5%B0%8F%E5%B1%81%E8%82%A1.jpg"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "配置环境(RHEL)",
+  "url": "http://example.com/2025/03/11/1.%E9%85%8D%E7%BD%AE%E7%8E%AF%E5%A2%83(RHEL)/",
+  "image": "http://example.com/%E5%B0%8F%E5%B1%81%E8%82%A1.jpg",
+  "datePublished": "2025-03-11T10:00:00.000Z",
+  "dateModified": "2025-03-30T13:09:06.407Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "John Doe",
+      "url": "http://example.com/"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/2025/03/11/1.%E9%85%8D%E7%BD%AE%E7%8E%AF%E5%A2%83(RHEL)/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!true && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: 'Copy Successful',
+    error: 'Copy Failed',
+    noSupport: 'Browser Not Supported'
+  },
+  relativeDate: {
+    homepage: true,
+    post: true
+  },
+  runtime: '',
+  dateSuffix: {
+    just: 'Just now',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: {"limitCount":150,"languages":{"author":"Author: John Doe","link":"Link: ","source":"Source: Hexo","info":"Copyright belongs to the author. For commercial use, please contact the author for authorization. For non-commercial use, please indicate the source."}},
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: 'Load More'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: true,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '配置环境(RHEL)',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'post'
+}</script><link rel="stylesheet" href="/xxx.css"><meta name="generator" content="Hexo 7.3.0"></head><body><div id="web_bg" style="background-image: url(/img/R.jpg);"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/img/%E5%A4%B4%E5%83%8F,jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">27</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">0</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fa fa-heartbeat"></i><span> 清单</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/Gallery/"><i class="fa-fw fas fa-images"></i><span> 照片</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background: 小屁股.jpg;"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">Hexo</span></a><a class="nav-page-title" href="/"><span class="site-name">配置环境(RHEL)</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fa fa-heartbeat"></i><span> 清单</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/Gallery/"><i class="fa-fw fas fa-images"></i><span> 照片</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">配置环境(RHEL)</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2025-03-11T10:00:00.000Z" title="Created 2025-03-11 18:00:00">2025-03-11</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2025-03-30T13:09:06.407Z" title="Updated 2025-03-30 21:09:06">2025-03-30</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post Views:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><div id="post-outdate-notice" data="{&quot;limitDay&quot;:365,&quot;messagePrev&quot;:&quot;It has been&quot;,&quot;messageNext&quot;:&quot;days since the last update, the content of the article may be outdated.&quot;,&quot;postUpdate&quot;:&quot;2025-03-30 21:09:06&quot;}" hidden></div><blockquote>
+<p>如果操作系统环境为CentOS、Red Hat、Rocky Linux、Alma Linux、Fedora等RHEL系列操作系统，使用以下步骤操作。</p>
+</blockquote>
+<h1 id="pDB2G">基础环境配置（所有节点）</h1>
+---
+
+<h2 id="Rd2qp">修改主机名与hosts文件</h2>
+---
+
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">[root@k8s-master ~]# hostnamectl set-hostname k8s-master</span><br><span class="line"></span><br><span class="line">[root@k8s-master ~]# vim /etc/hosts</span><br><span class="line">192.168.10.10   k8s-master</span><br><span class="line">192.168.10.11   k8s-work1</span><br><span class="line">192.168.10.12   k8s-work2</span><br><span class="line">192.168.10.15   k8s-harbor</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="cl7ee">验证mac地址uuid</h2>
+---
+
+<p>保证各节点mac和uuid唯一，避免克隆虚拟机后uuid一致导致加入集群异常。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@k8s-master ~]# cat /sys/class/net/ens160/address </span><br><span class="line">[root@k8s-master ~]# cat /sys/class/dmi/id/product_uuid </span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="AjRJW">时间同步</h2>
+---
+
+<ul>
+<li>master节点设置</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">[root@k8s-master ~]# dnf -y install chrony</span><br><span class="line">[root@k8s-master ~]# vim /etc/chrony.conf</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">Use public servers from the pool.ntp.org project.</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">Please consider joining the pool (http://www.pool.ntp.org/join.html).</span></span><br><span class="line">server ntp.aliyun.com iburst</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">Allow NTP client access from <span class="built_in">local</span> network.</span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">allow 192.168.10.0/24</span></span><br><span class="line"></span><br><span class="line">[root@k8s-master ~]# systemctl start chronyd</span><br><span class="line">[root@k8s-master ~]# systemctl enable chronyd</span><br><span class="line">[root@k8s-master ~]# timedatectl set-timezone Asia/Shanghai</span><br><span class="line">[root@k8s-master ~]# chronyc sources</span><br><span class="line">210 Number of sources = 4</span><br><span class="line">MS Name/IP address         Stratum Poll Reach LastRx Last sample               </span><br><span class="line">===============================================================================</span><br><span class="line">^* 202.118.1.81                  1   6   357   100   +124us[ +205us] +/- 7213us</span><br><span class="line">^? 2a01:4f8:120:9224::2          0   6     0     -     +0ns[   +0ns] +/-    0ns</span><br><span class="line">^+ 202.118.1.130                 1   6   316   184    -29us[  +33us] +/- 7479us</span><br><span class="line">^- 119.28.206.193                2   6   316   192    +13ms[  +13ms] +/-   44ms</span><br><span class="line">[root@k8s-master ~]#</span><br></pre></td></tr></table></figure>
+
+
+
+<ul>
+<li>node节点配置</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">[root@node1  ~]# yum -y install chrony  </span><br><span class="line">[root@node1  ~]# vim /etc/chrony.conf</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">Use public servers from the pool.ntp.org project.</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">Please consider joining the pool (http://www.pool.ntp.org/join.html).</span></span><br><span class="line">server 192.168.10.100</span><br><span class="line"></span><br><span class="line">[root@node1  ~]# systemctl start chronyd  </span><br><span class="line">[root@node1  ~]# systemctl enable chronyd  </span><br><span class="line">[root@node1  ~]# chronyc sources</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="wLAgk">设置防火墙规则</h2>
+---
+
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">[root@master  ~]# systemctl stop firewalld  </span><br><span class="line">[root@master  ~]# systemctl disable firewalld  </span><br><span class="line">[root@master  ~]# yum -y install iptables-services  </span><br><span class="line">[root@master  ~]# systemctl start iptables  </span><br><span class="line">[root@master  ~]# systemctl enable iptables  </span><br><span class="line">[root@master  ~]# iptables -F </span><br><span class="line">[root@master  ~]# service iptables save </span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="KUlJ1">关闭selinux</h2>
+---
+
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@master  ~]# setenforce 0  </span><br><span class="line">[root@master  ~]# sed -i &#x27;s/^SELINUX=.*/SELINUX=disabled/&#x27; /etc/selinux/config </span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="wyG8q">关闭swap分区</h2>
+---
+
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@master  ~]# swapoff -a  </span><br><span class="line">[root@master  ~]# sed -i &#x27;/ swap / s/^\(.*\)$/#\1/g&#x27; /etc/fstab  </span><br></pre></td></tr></table></figure>
+
+
+
+<h1 id="MXkxb">其他配置（所有节点）</h1>
+---
+
+<h2 id="wMId3">修改内核相关参数</h2>
+---
+
+<p>vm.swappiness &#x3D; 0 # 最大限度避免使用 swap</p>
+<p>net.bridge.bridge-nf-call-ip6tables &#x3D; 1 # 内核在桥接设备上让IPv6流量经过 Netfilter（iptables）过滤。</p>
+<p>net.bridge.bridge-nf-call-iptables &#x3D; 1 # 内核在桥接设备上让IPv4流量经过 Netfilter（iptables）过滤。</p>
+<p>net.ipv4.ip_forward &#x3D; 1 # 允许 IPv4 数据包从一个网络接口转发到另一个网络接口。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">[root@master  ~]# cat &gt; /etc/sysctl.d/kubernetes.conf &lt;&lt; EOF</span><br><span class="line">vm.swappiness = 0 </span><br><span class="line">net.bridge.bridge-nf-call-ip6tables = 1  </span><br><span class="line">net.bridge.bridge-nf-call-iptables = 1</span><br><span class="line">net.ipv4.ip_forward = 1 </span><br><span class="line">EOF</span><br><span class="line">[root@master  ~]# sysctl -p /etc/sysctl.d/kubernetes.conf </span><br></pre></td></tr></table></figure>
+
+
+
+<pre><code>- centos8会有如下报错
+</code></pre>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">vm.swappiness = 0</span><br><span class="line">sysctl: cannot stat /proc/sys/net/bridge/bridge-nf-call-ip6tables: 没有那个文件或目录</span><br><span class="line">sysctl: cannot stat /proc/sys/net/bridge/bridge-nf-call-iptables: 没有那个文件或目录</span><br><span class="line">net.ipv4.ip_forward = 1</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>临时解决，重启失效<br>modprobe br_netfilter</li>
+<li>开机加载上面这个模块</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">[root@master  ~]# cat &gt; /etc/rc.sysinit &lt;&lt; EOF</span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">!/bin/bash</span></span><br><span class="line">for file in /etc/sysconfig/modules/*.modules ; do</span><br><span class="line">[ -x $file ] &amp;&amp; $file</span><br><span class="line">done</span><br><span class="line">EOF</span><br><span class="line">[root@master  ~]# cat &gt; /etc/sysconfig/modules/br_netfilter.modules &lt;&lt; EOF</span><br><span class="line">modprobe br_netfilter # 通过 br_netfilter，内核能够让网络包在经过桥接设备时被 iptables 规则处理</span><br><span class="line">EOF</span><br><span class="line">[root@master  ~]# chmod 755 /etc/sysconfig/modules/br_netfilter.modules </span><br><span class="line">[root@master  ~]# lsmod |grep br_netfilter</span><br><span class="line">br_netfilter           24576  0</span><br><span class="line">bridge                290816  1 br_netfilter</span><br></pre></td></tr></table></figure>
+
+<h2 id="e6VbR">kube-proxy开启ipvs的前置条件</h2>
+---
+
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">[root@k8s-master ~]# yum -y install ipset ipvsadm</span><br><span class="line">[root@k8s-master ~]# cat &gt; /etc/sysconfig/modules/ipvs.modules &lt;&lt;EOF </span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">!/bin/bash</span></span><br><span class="line">modprobe -- ip_vs</span><br><span class="line">modprobe -- ip_vs_rr</span><br><span class="line">modprobe -- ip_vs_wrr</span><br><span class="line">modprobe -- ip_vs_sh</span><br><span class="line">modprobe -- nf_conntrack</span><br><span class="line">EOF</span><br><span class="line">[root@k8s-master ~]# chmod 755 /etc/sysconfig/modules/ipvs.modules &amp;&amp; bash  </span><br><span class="line">[root@k8s-master ~]# /etc/sysconfig/modules/ipvs.modules &amp;&amp; lsmod | grep -e ip_vs -e nf_conntrack </span><br><span class="line">ip_vs_sh               16384  0</span><br><span class="line">ip_vs_wrr              16384  0</span><br><span class="line">ip_vs_rr               16384  0</span><br><span class="line">ip_vs                 172032  6 ip_vs_rr,ip_vs_sh,ip_vs_wrr</span><br><span class="line">nf_conntrack          172032  1 ip_vs</span><br><span class="line">nf_defrag_ipv6         20480  2 nf_conntrack,ip_vs</span><br><span class="line">nf_defrag_ipv4         16384  1 nf_conntrack</span><br><span class="line">libcrc32c              16384  4 nf_conntrack,nf_tables,xfs,ip_vs</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">添加开机自动加载模块</span></span><br><span class="line">[root@k8s-master ~]# echo &quot;/etc/sysconfig/modules/ipvs.modules&quot; &gt;&gt; /etc/rc.local</span><br><span class="line">[root@k8s-master ~]# chmod +x /etc/rc.local</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">启用网桥过滤器模块</span></span><br><span class="line">[root@k8s-master ~]# echo 1 &gt; /proc/sys/net/bridge/bridge-nf-call-iptables</span><br><span class="line">[root@k8s-master ~]# echo 1 &gt; /proc/sys/net/ipv4/ip_forward</span><br></pre></td></tr></table></figure>
+
+
+
+<ul>
+<li>linux kernel 4.19版本已经将nf_conntrack_ipv4 更新为 nf_conntrack</li>
+</ul>
+<h2 id="oQzak">升级内核</h2>
+---
+
+<p>可选，建议4.18及+以上即可</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">载入公钥</span><br><span class="line">[root@master  ~]# rpm --import https://www.elrepo.org/RPM-GPG-KEY-elrepo.org </span><br><span class="line">升级安装ELRepo</span><br><span class="line">[root@master  ~]# rpm -Uvh http://www.elrepo.org/elrepo-release-7.0-3.el7.elrepo.noarch.rpm </span><br><span class="line">如果是centos8使用如下命令</span><br><span class="line">[root@master  ~]#yum install https://www.elrepo.org/elrepo-release-8.0-2.el8.elrepo.noarch.rpm </span><br><span class="line">载入elrepo-kernel元数据</span><br><span class="line">[root@master  ~]# yum --disablerepo=\* --enablerepo=elrepo-kernel repolist </span><br><span class="line">安装最新版本的kernel</span><br><span class="line">[root@master  ~]# yum --disablerepo=\* --enablerepo=elrepo-kernel install kernel-ml.x86_64 -y </span><br><span class="line">删除旧版本工具包</span><br><span class="line">[root@master  ~]# yum remove kernel-tools-libs.x86_64 kernel-tools.x86_64 -y </span><br><span class="line">安装新版本工具包</span><br><span class="line">[root@master  ~]# yum --disablerepo=\* --enablerepo=elrepo-kernel install kernel-ml-tools.x86_64 -y </span><br><span class="line">查看内核插入顺序</span><br><span class="line">[root@server-1  ~]# awk -F \&#x27; &#x27;$1==&quot;menuentry &quot; &#123;print i++ &quot; : &quot; $2&#125;&#x27;  /etc/grub2.cfg </span><br><span class="line">设置默认启动</span><br><span class="line">[root@server-1  ~]# grub2-set-default 0 // 0代表当前第一行，也就是5.3版本  </span><br><span class="line">[root@server-1  ~]# grub2-editenv list  </span><br><span class="line">重启验证</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="ArqRC">配置阿里云yum源</h2>
+---
+
+<p>k8s版本1.28前，使用如下命令配置yum源。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">[root@k8s-master ~]# cat &lt;&lt;EOF &gt; /etc/yum.repos.d/kubernetes.repo</span><br><span class="line">[kubernetes]</span><br><span class="line">name=Kubernetes</span><br><span class="line">baseurl=https://mirrors.aliyun.com/kubernetes/yum/repos/kubernetes-el7-x86_64/</span><br><span class="line">enabled=1</span><br><span class="line">gpgcheck=1</span><br><span class="line">repo_gpgcheck=1</span><br><span class="line">gpgkey=https://mirrors.aliyun.com/kubernetes/yum/doc/yum-key.gpg https://mirrors.aliyun.com/kubernetes/yum/doc/rpm-package-key.gpg</span><br><span class="line">EOF</span><br></pre></td></tr></table></figure>
+
+<p>k8s版本1.28以后，例如安装1.30，则修改对应的版本号即可。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">[root@k8s-master ~]# cat &lt;&lt;EOF | tee /etc/yum.repos.d/kubernetes.repo</span><br><span class="line">[kubernetes]</span><br><span class="line">name=Kubernetes</span><br><span class="line">baseurl=https://mirrors.aliyun.com/kubernetes-new/core/stable/v1.30/rpm/</span><br><span class="line">enabled=1</span><br><span class="line">gpgcheck=1</span><br><span class="line">gpgkey=https://mirrors.aliyun.com/kubernetes-new/core/stable/v1.30/rpm/repodata/repomd.xml.key</span><br><span class="line">EOF</span><br></pre></td></tr></table></figure>
+
+<h2 id="VaLKH">安装kubeadm、kubectl、kubelet</h2>
+---
+
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">yum install -y kubelet kubeadm kubectl</span><br><span class="line">systemctl enable kubelet</span><br><span class="line">systemctl start kubelet</span><br></pre></td></tr></table></figure>
+
+<p>kubelet 运行在集群所有节点上，用于启动Pod和容器等对象的工具<br>kubeadm 用于初始化集群，启动集群的命令工具<br>kubectl 用于和集群通信的命令行，通过kubectl可以部署和管理应用，查看各种资源，创建、删除和更新各种组件</p>
+<ul>
+<li>默认安装最新版，也可以指定老版本安装</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">yum list kubeadm --showduplicates | sort -r</span><br><span class="line">yum install -y kubelet-1.24.13 kubeadm-1.24.13 kubectl-1.24.13</span><br></pre></td></tr></table></figure>
+
+
+
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>Author: </span><span class="post-copyright-info"><a href="http://example.com">John Doe</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>Link: </span><span class="post-copyright-info"><a href="http://example.com/2025/03/11/1.%E9%85%8D%E7%BD%AE%E7%8E%AF%E5%A2%83(RHEL)/">http://example.com/2025/03/11/1.%E9%85%8D%E7%BD%AE%E7%8E%AF%E5%A2%83(RHEL)/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>Copyright Notice: </span><span class="post-copyright-info">All articles on this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless otherwise stated.</span></div></div><div class="tag_share"><div class="post-share"><div class="social-share" data-image="/%E5%B0%8F%E5%B1%81%E8%82%A1.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related" href="/2025/03/11/1.%E9%83%A8%E7%BD%B2Harbor%E7%A7%81%E6%9C%89%E9%95%9C%E5%83%8F%E4%BB%93%E5%BA%93/" title="部署Harbor私有镜像仓库"><img class="cover" src="/%E5%B0%8F%E5%B1%81%E8%82%A1.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="info"><div class="info-1"><div class="info-item-1">Previous</div><div class="info-item-2">部署Harbor私有镜像仓库</div></div><div class="info-2"><div class="info-item-1">部署harbor ---  下载软件包 ---   安装docker 安装docker-compose 下载harbor离线安装包github仓库软件包下载地址  12[root@opt ~]# wget https://github.com/goharbor/harbor/releases/download/v2.11.1/harbor-offline-installer-v2.11.1.tgz[root@opt ~]# tar -xvf harbor-offline-installer-v2.11.1.tgz   http方式 ---   复制配置文件并修改   1234567891011121314151617[root@harbor ~]# cp harbor.yml.tmpl harbor.yml[root@harbor ~]# vim harbor.yml# 设置域名hostname: harbor.local.com# 注释https相关配置# http related confighttp:  # port for http, default is 80. If...</div></div></div></a><a class="pagination-related" href="/2025/03/11/10.%E9%83%A8%E7%BD%B2calico%E7%BD%91%E7%BB%9C%E7%BB%84%E4%BB%B6%20%E5%89%AF%E6%9C%AC/" title="部署calico网络组件"><img class="cover" src="/%E5%B0%8F%E5%B1%81%E8%82%A1.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="info text-right"><div class="info-1"><div class="info-item-1">Next</div><div class="info-item-2">部署calico网络组件</div></div><div class="info-2"><div class="info-item-1"> flannel和calico部署其中一个即可，如果要部署calico的话，先卸载flannel。   一、Calico官网： ---  https://docs.projectcalico.org/v3.10/getting-started/kubernetes/installation/flannel 不同的k8s版本对应不同的calico版本，详情查看文档：https://projectcalico.docs.tigera.io/archive/v3.23/getting-started/kubernetes/requirements 二、安装部署 ---  1. 下载calico的canal插件： ---  &lt;font style=&quot;background-color:rgba(255, 255, 255, 0);&quot;&gt;# wget https://docs.projectcalico.org/manifests/canal.yaml&lt;/font&gt;  如果使用的是pod cidr...</div></div></div></a></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/%E5%A4%B4%E5%83%8F,jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">John Doe</div><div class="author-info-description"></div><div class="site-data"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">27</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">0</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/jack-xi-jack"><i class="fab fa-github"></i><span>🛴前往小家...</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/jack-xi-jack" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="mailto:1643699428@qq.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a><a class="social-icon" href="/wechat-qr.html" target="_blank" title="微信"><i class="fab fa-weixin" style="color: #000000;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>Announcement</span></div><div class="announcement_content">小熙的技术博客</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Contents</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#pDB2G"><span class="toc-number">1.</span> <span class="toc-text">基础环境配置（所有节点）</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Rd2qp"><span class="toc-number">1.1.</span> <span class="toc-text">修改主机名与hosts文件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#cl7ee"><span class="toc-number">1.2.</span> <span class="toc-text">验证mac地址uuid</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#AjRJW"><span class="toc-number">1.3.</span> <span class="toc-text">时间同步</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#wLAgk"><span class="toc-number">1.4.</span> <span class="toc-text">设置防火墙规则</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#KUlJ1"><span class="toc-number">1.5.</span> <span class="toc-text">关闭selinux</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#wyG8q"><span class="toc-number">1.6.</span> <span class="toc-text">关闭swap分区</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#MXkxb"><span class="toc-number">2.</span> <span class="toc-text">其他配置（所有节点）</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#wMId3"><span class="toc-number">2.1.</span> <span class="toc-text">修改内核相关参数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#e6VbR"><span class="toc-number">2.2.</span> <span class="toc-text">kube-proxy开启ipvs的前置条件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#oQzak"><span class="toc-number">2.3.</span> <span class="toc-text">升级内核</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ArqRC"><span class="toc-number">2.4.</span> <span class="toc-text">配置阿里云yum源</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#VaLKH"><span class="toc-number">2.5.</span> <span class="toc-text">安装kubeadm、kubectl、kubelet</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Posts</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2025/03/30/hello-world/" title="Hello World"><img src="/%E5%B0%8F%E5%B1%81%E8%82%A1.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Hello World"/></a><div class="content"><a class="title" href="/2025/03/30/hello-world/" title="Hello World">Hello World</a><time datetime="2025-03-30T10:39:36.452Z" title="Created 2025-03-30 18:39:36">2025-03-30</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/03/17/1.%E5%AD%98%E5%82%A8%E5%9F%BA%E7%A1%80%20%E5%89%AF%E6%9C%AC/" title="存储基础"><img src="/%E5%B0%8F%E5%B1%81%E8%82%A1.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="存储基础"/></a><div class="content"><a class="title" href="/2025/03/17/1.%E5%AD%98%E5%82%A8%E5%9F%BA%E7%A1%80%20%E5%89%AF%E6%9C%AC/" title="存储基础">存储基础</a><time datetime="2025-03-17T11:30:00.000Z" title="Created 2025-03-17 19:30:00">2025-03-17</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/03/17/2.%E5%88%86%E5%B8%83%E5%BC%8F%E5%AD%98%E5%82%A8%20%E5%89%AF%E6%9C%AC/" title="分布式存储"><img src="/%E5%B0%8F%E5%B1%81%E8%82%A1.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="分布式存储"/></a><div class="content"><a class="title" href="/2025/03/17/2.%E5%88%86%E5%B8%83%E5%BC%8F%E5%AD%98%E5%82%A8%20%E5%89%AF%E6%9C%AC/" title="分布式存储">分布式存储</a><time datetime="2025-03-17T11:30:00.000Z" title="Created 2025-03-17 19:30:00">2025-03-17</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/03/17/3.%E5%AD%98%E5%82%A8%E7%B1%BB%E5%9E%8B%20%E5%89%AF%E6%9C%AC/" title="存储类型"><img src="/%E5%B0%8F%E5%B1%81%E8%82%A1.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="存储类型"/></a><div class="content"><a class="title" href="/2025/03/17/3.%E5%AD%98%E5%82%A8%E7%B1%BB%E5%9E%8B%20%E5%89%AF%E6%9C%AC/" title="存储类型">存储类型</a><time datetime="2025-03-17T10:00:00.000Z" title="Created 2025-03-17 18:00:00">2025-03-17</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/03/11/1.kubeadm%E9%AB%98%E5%8F%AF%E7%94%A8%E9%83%A8%E7%BD%B2/" title="kubeadm高可用部署"><img src="/%E5%B0%8F%E5%B1%81%E8%82%A1.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="kubeadm高可用部署"/></a><div class="content"><a class="title" href="/2025/03/11/1.kubeadm%E9%AB%98%E5%8F%AF%E7%94%A8%E9%83%A8%E7%BD%B2/" title="kubeadm高可用部署">kubeadm高可用部署</a><time datetime="2025-03-11T10:00:00.000Z" title="Created 2025-03-11 18:00:00">2025-03-11</time></div></div></div></div></div></div></main><footer id="footer" style="background: 小屁股.jpg;"><div id="footer-wrap"><div class="copyright">&copy;2025 By John Doe</div><div class="footer_custom_text">I wish you to become your own sun, no need to rely on who's light.<p><a target="_blank" href="https://hexo.io/"><img src="https://img.shields.io/badge/Frame-Hexo-blue?style=flat&logo=hexo" title="博客框架为Hexo"></a>&nbsp;<a target="_blank" href="https://butterfly.js.org/"><img src="https://img.shields.io/badge/Theme-Butterfly-6513df?style=flat&logo=bitdefender" title="主题采用butterfly"></a>&nbsp;<a target="_blank" href="https://www.jsdelivr.com/"><img src="https://img.shields.io/badge/CDN-jsDelivr-orange?style=flat&logo=jsDelivr" title="本站使用JsDelivr为静态资源提供CDN加速"></a> &nbsp;<a target="_blank" href="https://vercel.com/ "><img src="https://img.shields.io/badge/Hosted-Vervel-brightgreen?style=flat&logo=Vercel" title="本站采用双线部署，默认线路托管于Vercel"></a>&nbsp;<a target="_blank" href="https://vercel.com/ "><img src="https://img.shields.io/badge/Hosted-Coding-0cedbe?style=flat&logo=Codio" title="本站采用双线部署，联通线路托管于Coding"></a>&nbsp;<a target="_blank" href="https://github.com/"><img src="https://img.shields.io/badge/Source-Github-d021d6?style=flat&logo=GitHub" title="本站项目由Gtihub托管"></a>&nbsp;<a target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img src="https://img.shields.io/badge/Copyright-BY--NC--SA%204.0-d42328?style=flat&logo=Claris" title="本站采用知识共享署名-非商业性使用-相同方式共享4.0国际许可协议进行许可"></a></p></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Reading Mode"><i class="fas fa-book-open"></i></button><button id="hide-aside-btn" type="button" title="Toggle Between Single-column and Double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="Settings"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table of Contents"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="Back to Top"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><div class="js-pjax"></div><script src="xxxx"></script><script defer="defer" id="fluttering_ribbon" mobile="true" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-fluttering-ribbon.min.js"></script><script id="canvas_nest" defer="defer" color="0,0,255" opacity="0.7" zIndex="-1" count="99" mobile="true" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-nest.min.js"></script><script id="click-heart" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/click-heart.min.js" async="async" mobile="false"></script><script src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script><script>(() => {
+  const pjaxSelectors = ["head > title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show",".js-pjax"]
+
+  window.pjax = new Pjax({
+    elements: 'a:not([target="_blank"]):not([href="/music/"]):not([href="/no-pjax/"])',
+    selectors: pjaxSelectors,
+    cacheBust: false,
+    analytics: false,
+    scrollRestoration: false
+  })
+
+  const triggerPjaxFn = (val) => {
+    if (!val) return
+    Object.values(val).forEach(fn => fn())
+  }
+
+  document.addEventListener('pjax:send', () => {
+    // removeEventListener
+    btf.removeGlobalFnEvent('pjaxSendOnce')
+    btf.removeGlobalFnEvent('themeChange')
+
+    // reset readmode
+    const $bodyClassList = document.body.classList
+    if ($bodyClassList.contains('read-mode')) $bodyClassList.remove('read-mode')
+
+    triggerPjaxFn(window.globalFn.pjaxSend)
+  })
+
+  document.addEventListener('pjax:complete', () => {
+    btf.removeGlobalFnEvent('pjaxCompleteOnce')
+    document.querySelectorAll('script[data-pjax]').forEach(item => {
+      const newScript = document.createElement('script')
+      const content = item.text || item.textContent || item.innerHTML || ""
+      Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+      newScript.appendChild(document.createTextNode(content))
+      item.parentNode.replaceChild(newScript, item)
+    })
+
+    triggerPjaxFn(window.globalFn.pjaxComplete)
+  })
+
+  document.addEventListener('pjax:error', e => {
+    if (e.request.status === 404) {
+      const usePjax = true
+      true 
+        ? (usePjax ? pjax.loadUrl('/404.html') : window.location.href = '/404.html')
+        : window.location.href = e.request.responseURL
+    }
+  })
+})()</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"live2d-widget-model-wanko"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"log":false});</script></body></html>

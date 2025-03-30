@@ -1,0 +1,221 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>部署traefik代理 | Hexo</title><meta name="author" content="John Doe"><meta name="copyright" content="John Doe"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="ingress-NGINX和traefik二选一  参考文档 ---  官方文档：https:&#x2F;&#x2F;doc.traefik.io&#x2F;traefik&#x2F;getting-started&#x2F;install-traefik&#x2F; gtihub地址：https:&#x2F;&#x2F;github.com&#x2F;traefik&#x2F;traefik-helm-chart 必要条件 ---  Kubernetes版本1.14+ Helm版本3+ 安装">
+<meta property="og:type" content="article">
+<meta property="og:title" content="部署traefik代理">
+<meta property="og:url" content="http://example.com/2025/03/11/4.%E9%83%A8%E7%BD%B2traefik%E4%BB%A3%E7%90%86/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="ingress-NGINX和traefik二选一  参考文档 ---  官方文档：https:&#x2F;&#x2F;doc.traefik.io&#x2F;traefik&#x2F;getting-started&#x2F;install-traefik&#x2F; gtihub地址：https:&#x2F;&#x2F;github.com&#x2F;traefik&#x2F;traefik-helm-chart 必要条件 ---  Kubernetes版本1.14+ Helm版本3+ 安装">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/%E5%B0%8F%E5%B1%81%E8%82%A1.jpg">
+<meta property="article:published_time" content="2025-03-11T10:00:00.000Z">
+<meta property="article:modified_time" content="2025-03-30T13:13:40.029Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/%E5%B0%8F%E5%B1%81%E8%82%A1.jpg"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "部署traefik代理",
+  "url": "http://example.com/2025/03/11/4.%E9%83%A8%E7%BD%B2traefik%E4%BB%A3%E7%90%86/",
+  "image": "http://example.com/%E5%B0%8F%E5%B1%81%E8%82%A1.jpg",
+  "datePublished": "2025-03-11T10:00:00.000Z",
+  "dateModified": "2025-03-30T13:13:40.029Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "John Doe",
+      "url": "http://example.com/"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/2025/03/11/4.%E9%83%A8%E7%BD%B2traefik%E4%BB%A3%E7%90%86/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!true && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: 'Copy Successful',
+    error: 'Copy Failed',
+    noSupport: 'Browser Not Supported'
+  },
+  relativeDate: {
+    homepage: true,
+    post: true
+  },
+  runtime: '',
+  dateSuffix: {
+    just: 'Just now',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: {"limitCount":150,"languages":{"author":"Author: John Doe","link":"Link: ","source":"Source: Hexo","info":"Copyright belongs to the author. For commercial use, please contact the author for authorization. For non-commercial use, please indicate the source."}},
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: 'Load More'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: true,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '部署traefik代理',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'post'
+}</script><link rel="stylesheet" href="/xxx.css"><meta name="generator" content="Hexo 7.3.0"></head><body><div id="web_bg" style="background-image: url(/img/R.jpg);"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/img/%E5%A4%B4%E5%83%8F,jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">27</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">0</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fa fa-heartbeat"></i><span> 清单</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/Gallery/"><i class="fa-fw fas fa-images"></i><span> 照片</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background: 小屁股.jpg;"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">Hexo</span></a><a class="nav-page-title" href="/"><span class="site-name">部署traefik代理</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fa fa-heartbeat"></i><span> 清单</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/Gallery/"><i class="fa-fw fas fa-images"></i><span> 照片</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">部署traefik代理</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2025-03-11T10:00:00.000Z" title="Created 2025-03-11 18:00:00">2025-03-11</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2025-03-30T13:13:40.029Z" title="Updated 2025-03-30 21:13:40">2025-03-30</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post Views:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><div id="post-outdate-notice" data="{&quot;limitDay&quot;:365,&quot;messagePrev&quot;:&quot;It has been&quot;,&quot;messageNext&quot;:&quot;days since the last update, the content of the article may be outdated.&quot;,&quot;postUpdate&quot;:&quot;2025-03-30 21:13:40&quot;}" hidden></div><blockquote>
+<p><font style="background-color:rgba(255, 255, 255, 0);">ingress-NGINX和traefik二选一</font></p>
+</blockquote>
+<h1 id="d1f972b3"><font style="background-color:rgba(255, 255, 255, 0);">参考文档</font></h1>
+---
+
+<p><font style="background-color:rgba(255, 255, 255, 0);">官方文档：</font><a target="_blank" rel="noopener" href="https://doc.traefik.io/traefik/getting-started/install-traefik/"><font style="background-color:rgba(255, 255, 255, 0);">https://doc.traefik.io/traefik/getting-started/install-traefik/</font></a></p>
+<p><font style="background-color:rgba(255, 255, 255, 0);">gtihub地址：</font><a target="_blank" rel="noopener" href="https://github.com/traefik/traefik-helm-chart"><font style="background-color:rgba(255, 255, 255, 0);">https://github.com/traefik/traefik-helm-chart</font></a></p>
+<h1 id="aae74ee4"><font style="background-color:rgba(255, 255, 255, 0);">必要条件</font></h1>
+---
+
+<p><font style="background-color:rgba(255, 255, 255, 0);">Kubernetes版本1.14+</font></p>
+<p><font style="background-color:rgba(255, 255, 255, 0);">Helm版本3+</font></p>
+<h1 id="7cc71933"><font style="background-color:rgba(255, 255, 255, 0);">安装traefik</font></h1>
+---
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br></pre></td><td class="code"><pre><span class="line"># 添加repo</span><br><span class="line">[root@k8s-master ~]# helm repo add traefik https://helm.traefik.io/traefik</span><br><span class="line"># 更新repo仓库资源</span><br><span class="line">[root@k8s-master ~]# helm repo update</span><br><span class="line"># 查看repo仓库traefik</span><br><span class="line">[root@k8s-master ~]# helm search repo traefik                                    </span><br><span class="line">NAME                    CHART VERSION   APP VERSION     DESCRIPTION                                       </span><br><span class="line">traefik/traefik         29.0.1          v3.0.4          A Traefik based Kubernetes ingress controller     </span><br><span class="line">traefik/traefik-hub     4.2.0           v2.11.0         Traefik Hub Ingress Controller                    </span><br><span class="line">traefik/traefik-mesh    4.1.1           v1.4.8          Traefik Mesh - Simpler Service Mesh               </span><br><span class="line">traefik/traefikee       4.0.1           v2.11.3         Traefik Enterprise is a unified cloud-native ne...</span><br><span class="line">traefik/maesh           2.1.2           v1.3.2          Maesh - Simpler Service Mesh[root@k8s-master ~]# kubectl create ns traefik</span><br><span class="line"># 拉取helm包</span><br><span class="line">[root@k8s-master ~]# helm pull traefik/traefik --untar</span><br><span class="line"># 修改配置</span><br><span class="line">[root@k8s-master ~]# cd traefik/</span><br><span class="line">[root@k8s-master traefik]# vim values.yaml </span><br><span class="line">deployment:</span><br><span class="line">  replicas: 1 # master节点数</span><br><span class="line"></span><br><span class="line">ingressRoute:</span><br><span class="line">  dashboard:</span><br><span class="line">    enabled: false  # 禁用helm中渲染的dashboard，traefik默认使用LoadBalancer暴露服务配置较为麻烦</span><br><span class="line"></span><br><span class="line"># Configure ports</span><br><span class="line">ports:</span><br><span class="line">  traefik:</span><br><span class="line">    port: 9000</span><br><span class="line">    hostPort: 9000 # 使用 hostport 模式</span><br><span class="line">  web:</span><br><span class="line">    port: 8000</span><br><span class="line">    hostPort: 80  # 使用 hostport 模式</span><br><span class="line">  websecure:</span><br><span class="line">    port: 8443</span><br><span class="line">    hostPort: 443  # 使用 hostport 模式</span><br><span class="line"></span><br><span class="line"># Options for the main traefik service, where the entrypoints traffic comes</span><br><span class="line"># from.</span><br><span class="line">service:  # 使用 hostport 模式就不需要Service了</span><br><span class="line">  enabled: false</span><br><span class="line"></span><br><span class="line"># Logs</span><br><span class="line"># https://docs.traefik.io/observability/logs/</span><br><span class="line">logs:</span><br><span class="line">  general:</span><br><span class="line">    level: DEBUG</span><br><span class="line">    </span><br><span class="line">tolerations:   # kubeadm 安装的集群默认情况下master是有污点，需要容忍这个污点才可以部署</span><br><span class="line">- key: &quot;node-role.kubernetes.io/master&quot;</span><br><span class="line">  operator: &quot;Equal&quot;</span><br><span class="line">  effect: &quot;NoSchedule&quot;</span><br><span class="line"></span><br><span class="line">nodeSelector:   # 固定到master1节点（该节点才可以访问外网）</span><br><span class="line">  kubernetes.io/hostname: &quot;k8s-master&quot;</span><br><span class="line"></span><br><span class="line">metrics:</span><br><span class="line">  service:</span><br><span class="line">    enabled: true # 开启metrics指标暴露</span><br><span class="line">logs:</span><br><span class="line">  access:</span><br><span class="line">    enabled: true # 启用access访问日志记录</span><br><span class="line">  fields:</span><br><span class="line">    headers:</span><br><span class="line">      defaultmode: keep # 保留请求头信息</span><br><span class="line"># 安装</span><br><span class="line">[root@k8s-master traefik]# helm install traefik -n traefik . -f values.yaml</span><br><span class="line">NAME: traefik</span><br><span class="line">LAST DEPLOYED: Mon Aug 14 13:11:04 2023</span><br><span class="line">NAMESPACE: traefik</span><br><span class="line">STATUS: deployed</span><br><span class="line">REVISION: 1</span><br><span class="line">TEST SUITE: None</span><br><span class="line">NOTES:</span><br><span class="line">Traefik Proxy v2.10.4 has been deployed successfully on traefik namespace !</span><br><span class="line"></span><br><span class="line"># 查看helm列表</span><br><span class="line">[root@k8s-master traefik]# helm list -n traefik</span><br><span class="line">NAME    NAMESPACE       REVISION        UPDATED                                 STATUS          CHART           APP VERSION</span><br><span class="line">traefik traefik         1               2023-08-14 13:11:04.879891529 +0800 CST deployed        traefik-24.0.0  v2.10.4    </span><br><span class="line"># 查看pod资源信息</span><br><span class="line">[root@k8s-master traefik]# kubectl get pod -n traefik</span><br><span class="line">NAME                       READY   STATUS    RESTARTS   AGE</span><br><span class="line">traefik-5bfc574f88-vz4zr   1/1     Running   0          65s</span><br></pre></td></tr></table></figure>
+
+<h1 id="6ddaaaec"><font style="background-color:rgba(255, 255, 255, 0);">域名访问dashboard服务</font></h1>
+---
+
+<p><font style="background-color:rgba(255, 255, 255, 0);">添加dashboard的IngressRoute资源：</font><code>&lt;font style=&quot;background-color:rgba(255, 255, 255, 0);&quot;&gt;kubectl apply -f dashboard.yaml&lt;/font&gt;</code></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">apiVersion: traefik.containo.us/v1alpha1</span><br><span class="line">kind: IngressRoute</span><br><span class="line">metadata:</span><br><span class="line">  name: dashboard</span><br><span class="line">  namespace: traefik</span><br><span class="line">spec:</span><br><span class="line">  entryPoints:</span><br><span class="line">    - web</span><br><span class="line">  routes:</span><br><span class="line">    - match: Host(`traefik.local.com`)</span><br><span class="line">      kind: Rule</span><br><span class="line">      services:</span><br><span class="line">        - name: api@internal</span><br><span class="line">          kind: TraefikService</span><br></pre></td></tr></table></figure>
+
+<p><font style="background-color:rgba(255, 255, 255, 0);">如果是traefik3以上版本，ingress资源如下</font></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">apiVersion: traefik.io/v1alpha1</span><br><span class="line">kind: IngressRoute</span><br><span class="line">metadata:</span><br><span class="line">  name: dashboard</span><br><span class="line">  namespace: traefik</span><br><span class="line">spec:</span><br><span class="line">  entryPoints:</span><br><span class="line">    - web</span><br><span class="line">  routes:</span><br><span class="line">    - match: Host(`traefik.local.com`)</span><br><span class="line">      kind: Rule</span><br><span class="line">      services:</span><br><span class="line">        - name: api@internal</span><br><span class="line">          kind: TraefikService</span><br></pre></td></tr></table></figure>
+
+<p><font style="background-color:rgba(255, 255, 255, 0);">接下来使用集群外部机器访问，添加hosts解析</font></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">192.168.10.100 traefik.local.com</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.nlark.com/yuque/0/2025/jpeg/43141749/1737810865713-743745e2-5843-48fd-83b9-c6fec38fbb1d.jpeg"></p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>Author: </span><span class="post-copyright-info"><a href="http://example.com">John Doe</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>Link: </span><span class="post-copyright-info"><a href="http://example.com/2025/03/11/4.%E9%83%A8%E7%BD%B2traefik%E4%BB%A3%E7%90%86/">http://example.com/2025/03/11/4.%E9%83%A8%E7%BD%B2traefik%E4%BB%A3%E7%90%86/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>Copyright Notice: </span><span class="post-copyright-info">All articles on this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless otherwise stated.</span></div></div><div class="tag_share"><div class="post-share"><div class="social-share" data-image="/%E5%B0%8F%E5%B1%81%E8%82%A1.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related" href="/2025/03/11/5.%E5%AE%89%E8%A3%85Kubernets%E9%9B%86%E7%BE%A4/" title="安装Kubernets集群"><img class="cover" src="/%E5%B0%8F%E5%B1%81%E8%82%A1.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="info"><div class="info-1"><div class="info-item-1">Previous</div><div class="info-item-2">安装Kubernets集群</div></div><div class="info-2"><div class="info-item-1">kubeadm部署集群(1.20之前) ---   以下操作在master节点执行	  配置文件创建集群 + 获取默认的初始化参数文件  &lt;font style=&quot;background-color:rgba(255, 255, 255, 0);&quot;&gt;# kubeadm config print init-defaults &gt; kubeadm-conf.yaml&lt;/font&gt;  配置kubeadm-conf.yaml初始化文件  12345678910111213141516171819202122232425262728293031323334353637383940414243444546apiVersion: kubeadm.k8s.io/v1beta2bootstrapTokens:- groups:  - system:bootstrappers:kubeadm:default-node-token  token: abcdef.0123456789abcdef  ttl: 24h0m0s  usages:  -...</div></div></div></a><a class="pagination-related" href="/2025/03/11/5.%E9%83%A8%E7%BD%B2minIO%E5%AF%B9%E8%B1%A1%E5%AD%98%E5%82%A8%20%E5%89%AF%E6%9C%AC/" title="部署minIO对象存储"><img class="cover" src="/%E5%B0%8F%E5%B1%81%E8%82%A1.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="info text-right"><div class="info-1"><div class="info-item-1">Next</div><div class="info-item-2">部署minIO对象存储</div></div><div class="info-2"><div class="info-item-1">单节点部署 ---  参考文档 [http://www.minio.org.cn/docs/minio/kubernetes/upstream/#quickstart-minio-for-kubernetes](http://www.minio.org.cn/docs/minio/kubernetes/upstream/#quickstart-minio-for-kubernetes)   部署minIO ---  创建资源 1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162636465666768697071727374757677787980[root@k8s-master minio]# cat &gt; minio.yaml &lt;&lt; EOFkind: PersistentVolumeClaimapiVersion: v1metadata:  name: minio-pvc ...</div></div></div></a></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/%E5%A4%B4%E5%83%8F,jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">John Doe</div><div class="author-info-description"></div><div class="site-data"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">27</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">0</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/jack-xi-jack"><i class="fab fa-github"></i><span>🛴前往小家...</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/jack-xi-jack" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="mailto:1643699428@qq.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a><a class="social-icon" href="/wechat-qr.html" target="_blank" title="微信"><i class="fab fa-weixin" style="color: #000000;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>Announcement</span></div><div class="announcement_content">小熙的技术博客</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Contents</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#d1f972b3"><span class="toc-number">1.</span> <span class="toc-text">参考文档</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#aae74ee4"><span class="toc-number">2.</span> <span class="toc-text">必要条件</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#7cc71933"><span class="toc-number">3.</span> <span class="toc-text">安装traefik</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#6ddaaaec"><span class="toc-number">4.</span> <span class="toc-text">域名访问dashboard服务</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Posts</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2025/03/30/hello-world/" title="Hello World"><img src="/%E5%B0%8F%E5%B1%81%E8%82%A1.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Hello World"/></a><div class="content"><a class="title" href="/2025/03/30/hello-world/" title="Hello World">Hello World</a><time datetime="2025-03-30T10:39:36.452Z" title="Created 2025-03-30 18:39:36">2025-03-30</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/03/17/1.%E5%AD%98%E5%82%A8%E5%9F%BA%E7%A1%80%20%E5%89%AF%E6%9C%AC/" title="存储基础"><img src="/%E5%B0%8F%E5%B1%81%E8%82%A1.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="存储基础"/></a><div class="content"><a class="title" href="/2025/03/17/1.%E5%AD%98%E5%82%A8%E5%9F%BA%E7%A1%80%20%E5%89%AF%E6%9C%AC/" title="存储基础">存储基础</a><time datetime="2025-03-17T11:30:00.000Z" title="Created 2025-03-17 19:30:00">2025-03-17</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/03/17/2.%E5%88%86%E5%B8%83%E5%BC%8F%E5%AD%98%E5%82%A8%20%E5%89%AF%E6%9C%AC/" title="分布式存储"><img src="/%E5%B0%8F%E5%B1%81%E8%82%A1.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="分布式存储"/></a><div class="content"><a class="title" href="/2025/03/17/2.%E5%88%86%E5%B8%83%E5%BC%8F%E5%AD%98%E5%82%A8%20%E5%89%AF%E6%9C%AC/" title="分布式存储">分布式存储</a><time datetime="2025-03-17T11:30:00.000Z" title="Created 2025-03-17 19:30:00">2025-03-17</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/03/17/3.%E5%AD%98%E5%82%A8%E7%B1%BB%E5%9E%8B%20%E5%89%AF%E6%9C%AC/" title="存储类型"><img src="/%E5%B0%8F%E5%B1%81%E8%82%A1.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="存储类型"/></a><div class="content"><a class="title" href="/2025/03/17/3.%E5%AD%98%E5%82%A8%E7%B1%BB%E5%9E%8B%20%E5%89%AF%E6%9C%AC/" title="存储类型">存储类型</a><time datetime="2025-03-17T10:00:00.000Z" title="Created 2025-03-17 18:00:00">2025-03-17</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/03/11/1.kubeadm%E9%AB%98%E5%8F%AF%E7%94%A8%E9%83%A8%E7%BD%B2/" title="kubeadm高可用部署"><img src="/%E5%B0%8F%E5%B1%81%E8%82%A1.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="kubeadm高可用部署"/></a><div class="content"><a class="title" href="/2025/03/11/1.kubeadm%E9%AB%98%E5%8F%AF%E7%94%A8%E9%83%A8%E7%BD%B2/" title="kubeadm高可用部署">kubeadm高可用部署</a><time datetime="2025-03-11T10:00:00.000Z" title="Created 2025-03-11 18:00:00">2025-03-11</time></div></div></div></div></div></div></main><footer id="footer" style="background: 小屁股.jpg;"><div id="footer-wrap"><div class="copyright">&copy;2025 By John Doe</div><div class="footer_custom_text">I wish you to become your own sun, no need to rely on who's light.<p><a target="_blank" href="https://hexo.io/"><img src="https://img.shields.io/badge/Frame-Hexo-blue?style=flat&logo=hexo" title="博客框架为Hexo"></a>&nbsp;<a target="_blank" href="https://butterfly.js.org/"><img src="https://img.shields.io/badge/Theme-Butterfly-6513df?style=flat&logo=bitdefender" title="主题采用butterfly"></a>&nbsp;<a target="_blank" href="https://www.jsdelivr.com/"><img src="https://img.shields.io/badge/CDN-jsDelivr-orange?style=flat&logo=jsDelivr" title="本站使用JsDelivr为静态资源提供CDN加速"></a> &nbsp;<a target="_blank" href="https://vercel.com/ "><img src="https://img.shields.io/badge/Hosted-Vervel-brightgreen?style=flat&logo=Vercel" title="本站采用双线部署，默认线路托管于Vercel"></a>&nbsp;<a target="_blank" href="https://vercel.com/ "><img src="https://img.shields.io/badge/Hosted-Coding-0cedbe?style=flat&logo=Codio" title="本站采用双线部署，联通线路托管于Coding"></a>&nbsp;<a target="_blank" href="https://github.com/"><img src="https://img.shields.io/badge/Source-Github-d021d6?style=flat&logo=GitHub" title="本站项目由Gtihub托管"></a>&nbsp;<a target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img src="https://img.shields.io/badge/Copyright-BY--NC--SA%204.0-d42328?style=flat&logo=Claris" title="本站采用知识共享署名-非商业性使用-相同方式共享4.0国际许可协议进行许可"></a></p></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Reading Mode"><i class="fas fa-book-open"></i></button><button id="hide-aside-btn" type="button" title="Toggle Between Single-column and Double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="Settings"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table of Contents"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="Back to Top"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><div class="js-pjax"></div><script src="xxxx"></script><script defer="defer" id="fluttering_ribbon" mobile="true" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-fluttering-ribbon.min.js"></script><script id="canvas_nest" defer="defer" color="0,0,255" opacity="0.7" zIndex="-1" count="99" mobile="true" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-nest.min.js"></script><script id="click-heart" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/click-heart.min.js" async="async" mobile="false"></script><script src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script><script>(() => {
+  const pjaxSelectors = ["head > title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show",".js-pjax"]
+
+  window.pjax = new Pjax({
+    elements: 'a:not([target="_blank"]):not([href="/music/"]):not([href="/no-pjax/"])',
+    selectors: pjaxSelectors,
+    cacheBust: false,
+    analytics: false,
+    scrollRestoration: false
+  })
+
+  const triggerPjaxFn = (val) => {
+    if (!val) return
+    Object.values(val).forEach(fn => fn())
+  }
+
+  document.addEventListener('pjax:send', () => {
+    // removeEventListener
+    btf.removeGlobalFnEvent('pjaxSendOnce')
+    btf.removeGlobalFnEvent('themeChange')
+
+    // reset readmode
+    const $bodyClassList = document.body.classList
+    if ($bodyClassList.contains('read-mode')) $bodyClassList.remove('read-mode')
+
+    triggerPjaxFn(window.globalFn.pjaxSend)
+  })
+
+  document.addEventListener('pjax:complete', () => {
+    btf.removeGlobalFnEvent('pjaxCompleteOnce')
+    document.querySelectorAll('script[data-pjax]').forEach(item => {
+      const newScript = document.createElement('script')
+      const content = item.text || item.textContent || item.innerHTML || ""
+      Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+      newScript.appendChild(document.createTextNode(content))
+      item.parentNode.replaceChild(newScript, item)
+    })
+
+    triggerPjaxFn(window.globalFn.pjaxComplete)
+  })
+
+  document.addEventListener('pjax:error', e => {
+    if (e.request.status === 404) {
+      const usePjax = true
+      true 
+        ? (usePjax ? pjax.loadUrl('/404.html') : window.location.href = '/404.html')
+        : window.location.href = e.request.responseURL
+    }
+  })
+})()</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"live2d-widget-model-wanko"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"log":false});</script></body></html>

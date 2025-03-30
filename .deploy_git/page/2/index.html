@@ -1,0 +1,217 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>Hexo</title><meta name="author" content="John Doe"><meta name="copyright" content="John Doe"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta property="og:type" content="website">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="http://example.com/page/2/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/img/%E5%A4%B4%E5%83%8F,jpg">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/img/%E5%A4%B4%E5%83%8F,jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/page/2/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!true && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: 'Copy Successful',
+    error: 'Copy Failed',
+    noSupport: 'Browser Not Supported'
+  },
+  relativeDate: {
+    homepage: true,
+    post: true
+  },
+  runtime: '',
+  dateSuffix: {
+    just: 'Just now',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: {"limitCount":150,"languages":{"author":"Author: John Doe","link":"Link: ","source":"Source: Hexo","info":"Copyright belongs to the author. For commercial use, please contact the author for authorization. For non-commercial use, please indicate the source."}},
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: 'Load More'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: true,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Hexo',
+  isHighlightShrink: false,
+  isToc: false,
+  pageType: 'home'
+}</script><link rel="stylesheet" href="/xxx.css"><meta name="generator" content="Hexo 7.3.0"></head><body><div id="web_bg" style="background-image: url(/img/R.jpg);"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/img/%E5%A4%B4%E5%83%8F,jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">27</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">0</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fa fa-heartbeat"></i><span> 清单</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/Gallery/"><i class="fa-fw fas fa-images"></i><span> 照片</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="page" id="body-wrap"><header class="full_page" id="page-header" style="background-image: url(/img/fire.jpg);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">Hexo</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fa fa-heartbeat"></i><span> 清单</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/Gallery/"><i class="fa-fw fas fa-images"></i><span> 照片</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="site-info"><h1 id="site-title">Hexo</h1><div id="site-subtitle"><span id="subtitle"></span></div><div id="site_social_icons"><a class="social-icon" href="https://github.com/jack-xi-jack" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="mailto:1643699428@qq.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a><a class="social-icon" href="/wechat-qr.html" target="_blank" title="微信"><i class="fab fa-weixin" style="color: #000000;"></i></a></div></div><div id="scroll-down"><i class="fas fa-angle-down scroll-down-effects"></i></div></header><main class="layout" id="content-inner"><div class="recent-posts nc" id="recent-posts"><div class="recent-post-items"><div class="recent-post-item"><div class="post_cover left"><a href="/2025/03/11/12%E9%83%A8%E7%BD%B2Prometheus%E7%9B%91%E6%8E%A7/" title="部署Prometheus监控"><img class="post-bg" src="/%E5%B0%8F%E5%B1%81%E8%82%A1.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="部署Prometheus监控"></a></div><div class="recent-post-info"><a class="article-title" href="/2025/03/11/12%E9%83%A8%E7%BD%B2Prometheus%E7%9B%91%E6%8E%A7/" title="部署Prometheus监控">部署Prometheus监控</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time class="post-meta-date-created" datetime="2025-03-11T10:00:00.000Z" title="Created 2025-03-11 18:00:00">2025-03-11</time><span class="article-meta-separator">|</span><i class="fas fa-history"></i><span class="article-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2025-03-30T13:15:24.411Z" title="Updated 2025-03-30 21:15:24">2025-03-30</time></span></div><div class="content"> 如果已安装metrics-server需要先卸载，否则冲突   组件说明 ---   MetricServer：是kubernetes集群资源使用情况的聚合器，收集数据给kubernetes集群内使用，如kubectl,hpa,scheduler等。 PrometheusOperator：是一个系统监测和警报工具箱，用来存储监控数据。 NodeExporter：用于各node的关键度量指标状态数据。 KubeStateMetrics：收集kubernetes集群内资源对象数据，制定告警规则。 Prometheus：采用pull方式收集apiserver，scheduler，controller-manager，kubelet组件数据，通过http协议传输。 Grafana：是可视化数据统计和监控平台。   安装部署 ---  项目地址：https://github.com/prometheus-operator/kube-prometheus 克隆项目至本地 ---  1git clone...</div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/2025/03/11/13.%E9%83%A8%E7%BD%B2ELK%E6%97%A5%E5%BF%97%E6%94%B6%E9%9B%86/" title="部署ELK日志收集"><img class="post-bg" src="/%E5%B0%8F%E5%B1%81%E8%82%A1.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="部署ELK日志收集"></a></div><div class="recent-post-info"><a class="article-title" href="/2025/03/11/13.%E9%83%A8%E7%BD%B2ELK%E6%97%A5%E5%BF%97%E6%94%B6%E9%9B%86/" title="部署ELK日志收集">部署ELK日志收集</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time class="post-meta-date-created" datetime="2025-03-11T10:00:00.000Z" title="Created 2025-03-11 18:00:00">2025-03-11</time><span class="article-meta-separator">|</span><i class="fas fa-history"></i><span class="article-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2025-03-30T13:15:48.542Z" title="Updated 2025-03-30 21:15:48">2025-03-30</time></span></div><div class="content"> 以3节点为例，存储使用local pv使用最大io性能，所有节点即是master节点也是data节点。完整内容可参考文档：   https://www.cuiliangblog.cn/detail/section/162609409   系统参数调整 ---  修改文件描述符数目 ---  设置环境变量 12345# 修改环境变量文件vim /etc/profileulimit -n 65535# 使配置生效source /etc/profile   修改limits.conf配置文件 1234# 修改limits.conf配置vim /etc/security/limits.conf* soft nofile 65535* hard nofile 65535  验证 12# ulimit -n65535   修改虚拟内存数大小 ---  内核设置可以直接在主机上设置，也可以通过具有特权的初始化容器中设置，通常情况下直接在主机上设置。 临时设置 12# sysctl -w vm.max_map_count=262144vm.max_map_count =...</div></div></div><div class="recent-post-item"><div class="post_cover left"><a href="/2025/03/11/16.%E9%83%A8%E7%BD%B2Kafka%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97%20%E5%89%AF%E6%9C%AC/" title="部署Kafka消息队列"><img class="post-bg" src="/%E5%B0%8F%E5%B1%81%E8%82%A1.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="部署Kafka消息队列"></a></div><div class="recent-post-info"><a class="article-title" href="/2025/03/11/16.%E9%83%A8%E7%BD%B2Kafka%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97%20%E5%89%AF%E6%9C%AC/" title="部署Kafka消息队列">部署Kafka消息队列</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time class="post-meta-date-created" datetime="2025-03-11T10:00:00.000Z" title="Created 2025-03-11 18:00:00">2025-03-11</time><span class="article-meta-separator">|</span><i class="fas fa-history"></i><span class="article-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2025-03-30T13:16:12.873Z" title="Updated 2025-03-30 21:16:12">2025-03-30</time></span></div><div class="content"> 生产环境推荐的kafka部署方式为operator方式部署，Strimzi是目前最主流的operator方案。集群数据量较小的话，可以采用NFS共享存储，数据量较大的话使用local pv存储。  部署operator ---  helm部署operator ---  operator部署方式为helm或yaml文件部署，此处以helm方式部署为例： 12345678910111213141516171819202122232425[root@tiaoban kafka]# helm repo add strimzi https://strimzi.io/charts/&quot;strimzi&quot; has been added to your repositories[root@tiaoban kafka]# helm pull strimzi/strimzi-kafka-operator --untar[root@tiaoban kafka]# cd strimzi-kafka-operator[root@tiaoban...</div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/2025/03/11/17.%E9%83%A8%E7%BD%B2Rabbit%20MQ%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/" title="部署Rabbit MQ消息队列"><img class="post-bg" src="/%E5%B0%8F%E5%B1%81%E8%82%A1.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="部署Rabbit MQ消息队列"></a></div><div class="recent-post-info"><a class="article-title" href="/2025/03/11/17.%E9%83%A8%E7%BD%B2Rabbit%20MQ%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/" title="部署Rabbit MQ消息队列">部署Rabbit MQ消息队列</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time class="post-meta-date-created" datetime="2025-03-11T10:00:00.000Z" title="Created 2025-03-11 18:00:00">2025-03-11</time><span class="article-meta-separator">|</span><i class="fas fa-history"></i><span class="article-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2025-03-30T13:16:35.461Z" title="Updated 2025-03-30 21:16:35">2025-03-30</time></span></div><div class="content">安装Kubernetes Operator ---  官网的文档 https://www.rabbitmq.com/kubernetes/operator/operator-overview.html 1234567891011121314# Operator的yaml文件地址# wget https://github.com/rabbitmq/cluster-operator/releases/latest/download/cluster-operator.yml# 安装# kubectl apply -f cluster-operator.yml namespace/rabbitmq-system createdcustomresourcedefinition.apiextensions.k8s.io/rabbitmqclusters.rabbitmq.com createdserviceaccount/rabbitmq-cluster-operator...</div></div></div><div class="recent-post-item"><div class="post_cover left"><a href="/2025/03/11/2.%E5%AE%89%E8%A3%85%E5%AE%B9%E5%99%A8%E8%BF%90%E8%A1%8C%E6%97%B6(Docker)/" title="安装容器运行时(Docker)"><img class="post-bg" src="/%E5%B0%8F%E5%B1%81%E8%82%A1.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="安装容器运行时(Docker)"></a></div><div class="recent-post-info"><a class="article-title" href="/2025/03/11/2.%E5%AE%89%E8%A3%85%E5%AE%B9%E5%99%A8%E8%BF%90%E8%A1%8C%E6%97%B6(Docker)/" title="安装容器运行时(Docker)">安装容器运行时(Docker)</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time class="post-meta-date-created" datetime="2025-03-11T10:00:00.000Z" title="Created 2025-03-11 18:00:00">2025-03-11</time><span class="article-meta-separator">|</span><i class="fas fa-history"></i><span class="article-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2025-03-30T13:10:18.818Z" title="Updated 2025-03-30 21:10:18">2025-03-30</time></span></div><div class="content"> 以下操作全部节点执行，如果使用docker作为容器运行时，最高支持的k8s版本为1.23.17。  版本选择 ---  每个k8s版本都有对应的docker版本范围，具体参考官方文档https://github.com/kubernetes/kubernetes/releases 以1.23.X为例，查看https://github.com/kubernetes/kubernetes/blob/master/CHANGELOG/CHANGELOG-1.23.md  由更新日志可知，支持的docker版本为20.10.7以上，也不用安装最新版本的docker，以免出现docker版本与k8s版本不匹配的现象，此处就以安装20.10.7为例。 docker安装 ---  RHEL安装 ---  12345678# 安装前源准备[root@k8s-master ~]# yum install -y yum-utils device-mapper-persistent-data lvm2 # 配置yum源[root@k8s-master ~]# yum-config-manager...</div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/2025/03/11/2.%E9%83%A8%E7%BD%B2helm%E5%8C%85%E7%AE%A1%E7%90%86%E5%B7%A5%E5%85%B7/" title="部署helm包管理工具"><img class="post-bg" src="/%E5%B0%8F%E5%B1%81%E8%82%A1.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="部署helm包管理工具"></a></div><div class="recent-post-info"><a class="article-title" href="/2025/03/11/2.%E9%83%A8%E7%BD%B2helm%E5%8C%85%E7%AE%A1%E7%90%86%E5%B7%A5%E5%85%B7/" title="部署helm包管理工具">部署helm包管理工具</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time class="post-meta-date-created" datetime="2025-03-11T10:00:00.000Z" title="Created 2025-03-11 18:00:00">2025-03-11</time><span class="article-meta-separator">|</span><i class="fas fa-history"></i><span class="article-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2025-03-30T13:10:15.127Z" title="Updated 2025-03-30 21:10:15">2025-03-30</time></span></div><div class="content">安装Helm ---   官方参考文档：https://helm.sh/docs/intro/quickstart/ Helm的安装方式有两种：预编译的二进制程序和源码编译安装。 Helm项目托管在GitHub之上，项目地址为https://github.com/helm/helm/releases。 Helm的运行依赖于本地安装并配置完成的kubectl方能与运行于Kubernetes集群之上的Tiller服务器进行通信，因此，运行Helm的节点也应该是可以正常使用kubectl命令的主机，或者至少是有着可用kubeconfig配置文件的主机。  下载压缩包并解压 ---  12[root@k8s-master k8s-install]# wget https://get.helm.sh/helm-v3.16.2-linux-amd64.tar.gz[root@k8s-master k8s-install]# tar -zxvf helm-v3.16.2-linux-amd64.tar.gz  移动到环境变量目录中 ---  1234[root@k8s-master...</div></div></div><div class="recent-post-item"><div class="post_cover left"><a href="/2025/03/11/3.%E5%AE%89%E8%A3%85%E5%AE%B9%E5%99%A8%E8%BF%90%E8%A1%8C%E6%97%B6(Containerd)%20%E5%89%AF%E6%9C%AC/" title="安装容器运行时(Containerd)"><img class="post-bg" src="/%E5%B0%8F%E5%B1%81%E8%82%A1.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="安装容器运行时(Containerd)"></a></div><div class="recent-post-info"><a class="article-title" href="/2025/03/11/3.%E5%AE%89%E8%A3%85%E5%AE%B9%E5%99%A8%E8%BF%90%E8%A1%8C%E6%97%B6(Containerd)%20%E5%89%AF%E6%9C%AC/" title="安装容器运行时(Containerd)">安装容器运行时(Containerd)</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time class="post-meta-date-created" datetime="2025-03-11T10:00:00.000Z" title="Created 2025-03-11 18:00:00">2025-03-11</time><span class="article-meta-separator">|</span><i class="fas fa-history"></i><span class="article-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2025-03-30T13:10:55.103Z" title="Updated 2025-03-30 21:10:55">2025-03-30</time></span></div><div class="content"> 从Kubernetes 1.20版本开始官方不推荐使用Docker，1.24版本将完全弃用docker。如果安装1.22以上版本的k8s，官方推荐使用containerd，docker支持k8s版本最高为1.23.16。   版本选择 ---  每个k8s版本都有对应的Containerd版本范围，具体参考官方文档https://github.com/kubernetes/kubernetes/releases 以1.24.X为例，查看https://github.com/kubernetes/kubernetes/blob/master/CHANGELOG/CHANGELOG-1.24.md  由更新日志可知，支持的最低版本Containerd为1.4.12 安装container ---  RHEL ---  12345678910# 安装依赖[root@k8s-master ~]# yum install -y yum-utils device-mapper-persistent-data lvm2# 添加yum源[root@k8s-master ~]#...</div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/2025/03/11/4.Containerd%E8%BF%9B%E9%98%B6%E4%BD%BF%E7%94%A8%20%E5%89%AF%E6%9C%AC/" title="Containerd进阶使用"><img class="post-bg" src="/%E5%B0%8F%E5%B1%81%E8%82%A1.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Containerd进阶使用"></a></div><div class="recent-post-info"><a class="article-title" href="/2025/03/11/4.Containerd%E8%BF%9B%E9%98%B6%E4%BD%BF%E7%94%A8%20%E5%89%AF%E6%9C%AC/" title="Containerd进阶使用">Containerd进阶使用</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time class="post-meta-date-created" datetime="2025-03-11T10:00:00.000Z" title="Created 2025-03-11 18:00:00">2025-03-11</time><span class="article-meta-separator">|</span><i class="fas fa-history"></i><span class="article-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2025-03-30T13:11:27.640Z" title="Updated 2025-03-30 21:11:27">2025-03-30</time></span></div><div class="content">ctr命令使用 ---  命名空间 查看命名空间  Containerd 中也支持命名空间的概念，比如查看命名空间： 12345[root@work3 ~]# ctr ns lsNAME    LABELS default        k8s.io         moby   创建命名空间 如果不指定，ctr 默认使用的是 default 空间。同样也可以使用 ns create 命令创建一个命名空间： 1234567[root@work3 ~]# ctr ns create test[root@work3 ~]# ctr ns lsNAME    LABELS default        k8s.io         moby           test  删除命名空间 使用 remove 或者 rm 可以删除 namespace： 1234567[root@work3 ~]# ctr ns rm testtest[root@work3 ~]# ctr ns lsNAME    LABELS default        k8s.io         moby...</div></div></div><div class="recent-post-item"><div class="post_cover left"><a href="/2025/03/11/5.%E5%AE%89%E8%A3%85Kubernets%E9%9B%86%E7%BE%A4/" title="安装Kubernets集群"><img class="post-bg" src="/%E5%B0%8F%E5%B1%81%E8%82%A1.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="安装Kubernets集群"></a></div><div class="recent-post-info"><a class="article-title" href="/2025/03/11/5.%E5%AE%89%E8%A3%85Kubernets%E9%9B%86%E7%BE%A4/" title="安装Kubernets集群">安装Kubernets集群</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time class="post-meta-date-created" datetime="2025-03-11T10:00:00.000Z" title="Created 2025-03-11 18:00:00">2025-03-11</time><span class="article-meta-separator">|</span><i class="fas fa-history"></i><span class="article-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2025-03-30T13:11:56.526Z" title="Updated 2025-03-30 21:11:56">2025-03-30</time></span></div><div class="content">kubeadm部署集群(1.20之前) ---   以下操作在master节点执行	  配置文件创建集群 + 获取默认的初始化参数文件  &lt;font style=&quot;background-color:rgba(255, 255, 255, 0);&quot;&gt;# kubeadm config print init-defaults &gt; kubeadm-conf.yaml&lt;/font&gt;  配置kubeadm-conf.yaml初始化文件  12345678910111213141516171819202122232425262728293031323334353637383940414243444546apiVersion: kubeadm.k8s.io/v1beta2bootstrapTokens:- groups:  - system:bootstrappers:kubeadm:default-node-token  token: abcdef.0123456789abcdef  ttl: 24h0m0s  usages:  -...</div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/2025/03/11/4.%E9%83%A8%E7%BD%B2traefik%E4%BB%A3%E7%90%86/" title="部署traefik代理"><img class="post-bg" src="/%E5%B0%8F%E5%B1%81%E8%82%A1.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="部署traefik代理"></a></div><div class="recent-post-info"><a class="article-title" href="/2025/03/11/4.%E9%83%A8%E7%BD%B2traefik%E4%BB%A3%E7%90%86/" title="部署traefik代理">部署traefik代理</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time class="post-meta-date-created" datetime="2025-03-11T10:00:00.000Z" title="Created 2025-03-11 18:00:00">2025-03-11</time><span class="article-meta-separator">|</span><i class="fas fa-history"></i><span class="article-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2025-03-30T13:13:40.029Z" title="Updated 2025-03-30 21:13:40">2025-03-30</time></span></div><div class="content"> ingress-NGINX和traefik二选一  参考文档 ---  官方文档：https://doc.traefik.io/traefik/getting-started/install-traefik/ gtihub地址：https://github.com/traefik/traefik-helm-chart 必要条件 ---  Kubernetes版本1.14+ Helm版本3+ 安装traefik ---  1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162636465666768697071727374757677787980818283# 添加repo[root@k8s-master ~]# helm repo add traefik https://helm.traefik.io/traefik# 更新repo仓库资源[root@k8s-master ~]# helm repo...</div></div></div></div><nav id="pagination"><div class="pagination"><a class="extend prev" rel="prev" href="/"><i class="fas fa-chevron-left fa-fw"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/#content-inner">3</a><a class="extend next" rel="next" href="/page/3/#content-inner"><i class="fas fa-chevron-right fa-fw"></i></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/%E5%A4%B4%E5%83%8F,jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">John Doe</div><div class="author-info-description"></div><div class="site-data"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">27</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">0</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/jack-xi-jack"><i class="fab fa-github"></i><span>🛴前往小家...</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/jack-xi-jack" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="mailto:1643699428@qq.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a><a class="social-icon" href="/wechat-qr.html" target="_blank" title="微信"><i class="fab fa-weixin" style="color: #000000;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>Announcement</span></div><div class="announcement_content">小熙的技术博客</div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Posts</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2025/03/30/hello-world/" title="Hello World"><img src="/%E5%B0%8F%E5%B1%81%E8%82%A1.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Hello World"/></a><div class="content"><a class="title" href="/2025/03/30/hello-world/" title="Hello World">Hello World</a><time datetime="2025-03-30T10:39:36.452Z" title="Created 2025-03-30 18:39:36">2025-03-30</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/03/17/1.%E5%AD%98%E5%82%A8%E5%9F%BA%E7%A1%80%20%E5%89%AF%E6%9C%AC/" title="存储基础"><img src="/%E5%B0%8F%E5%B1%81%E8%82%A1.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="存储基础"/></a><div class="content"><a class="title" href="/2025/03/17/1.%E5%AD%98%E5%82%A8%E5%9F%BA%E7%A1%80%20%E5%89%AF%E6%9C%AC/" title="存储基础">存储基础</a><time datetime="2025-03-17T11:30:00.000Z" title="Created 2025-03-17 19:30:00">2025-03-17</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/03/17/2.%E5%88%86%E5%B8%83%E5%BC%8F%E5%AD%98%E5%82%A8%20%E5%89%AF%E6%9C%AC/" title="分布式存储"><img src="/%E5%B0%8F%E5%B1%81%E8%82%A1.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="分布式存储"/></a><div class="content"><a class="title" href="/2025/03/17/2.%E5%88%86%E5%B8%83%E5%BC%8F%E5%AD%98%E5%82%A8%20%E5%89%AF%E6%9C%AC/" title="分布式存储">分布式存储</a><time datetime="2025-03-17T11:30:00.000Z" title="Created 2025-03-17 19:30:00">2025-03-17</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/03/17/3.%E5%AD%98%E5%82%A8%E7%B1%BB%E5%9E%8B%20%E5%89%AF%E6%9C%AC/" title="存储类型"><img src="/%E5%B0%8F%E5%B1%81%E8%82%A1.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="存储类型"/></a><div class="content"><a class="title" href="/2025/03/17/3.%E5%AD%98%E5%82%A8%E7%B1%BB%E5%9E%8B%20%E5%89%AF%E6%9C%AC/" title="存储类型">存储类型</a><time datetime="2025-03-17T10:00:00.000Z" title="Created 2025-03-17 18:00:00">2025-03-17</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/03/11/1.kubeadm%E9%AB%98%E5%8F%AF%E7%94%A8%E9%83%A8%E7%BD%B2/" title="kubeadm高可用部署"><img src="/%E5%B0%8F%E5%B1%81%E8%82%A1.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="kubeadm高可用部署"/></a><div class="content"><a class="title" href="/2025/03/11/1.kubeadm%E9%AB%98%E5%8F%AF%E7%94%A8%E9%83%A8%E7%BD%B2/" title="kubeadm高可用部署">kubeadm高可用部署</a><time datetime="2025-03-11T10:00:00.000Z" title="Created 2025-03-11 18:00:00">2025-03-11</time></div></div></div></div><div class="card-widget card-webinfo"><div class="item-headline"><i class="fas fa-chart-line"></i><span>Website Info</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">Article Count :</div><div class="item-count">27</div></div><div class="webinfo-item"><div class="item-name">Unique Visitors :</div><div class="item-count" id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">Page Views :</div><div class="item-count" id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">Last Update :</div><div class="item-count" id="last-push-date" data-lastPushDate="2025-03-30T14:35:25.319Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div></div></div></div></div></main><footer id="footer" style="background-image: url(/img/fire.jpg);"><div id="footer-wrap"><div class="copyright">&copy;2025 By John Doe</div><div class="footer_custom_text">I wish you to become your own sun, no need to rely on who's light.<p><a target="_blank" href="https://hexo.io/"><img src="https://img.shields.io/badge/Frame-Hexo-blue?style=flat&logo=hexo" title="博客框架为Hexo"></a>&nbsp;<a target="_blank" href="https://butterfly.js.org/"><img src="https://img.shields.io/badge/Theme-Butterfly-6513df?style=flat&logo=bitdefender" title="主题采用butterfly"></a>&nbsp;<a target="_blank" href="https://www.jsdelivr.com/"><img src="https://img.shields.io/badge/CDN-jsDelivr-orange?style=flat&logo=jsDelivr" title="本站使用JsDelivr为静态资源提供CDN加速"></a> &nbsp;<a target="_blank" href="https://vercel.com/ "><img src="https://img.shields.io/badge/Hosted-Vervel-brightgreen?style=flat&logo=Vercel" title="本站采用双线部署，默认线路托管于Vercel"></a>&nbsp;<a target="_blank" href="https://vercel.com/ "><img src="https://img.shields.io/badge/Hosted-Coding-0cedbe?style=flat&logo=Codio" title="本站采用双线部署，联通线路托管于Coding"></a>&nbsp;<a target="_blank" href="https://github.com/"><img src="https://img.shields.io/badge/Source-Github-d021d6?style=flat&logo=GitHub" title="本站项目由Gtihub托管"></a>&nbsp;<a target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img src="https://img.shields.io/badge/Copyright-BY--NC--SA%204.0-d42328?style=flat&logo=Claris" title="本站采用知识共享署名-非商业性使用-相同方式共享4.0国际许可协议进行许可"></a></p></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="hide-aside-btn" type="button" title="Toggle Between Single-column and Double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="go-up" type="button" title="Back to Top"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><div class="js-pjax"><script>window.typedJSFn = {
+  init: str => {
+    window.typed = new Typed('#subtitle', Object.assign({
+      strings: str,
+      startDelay: 300,
+      typeSpeed: 150,
+      loop: true,
+      backSpeed: 50,
+    }, null))
+  },
+  run: subtitleType => {
+    if (true) {
+      if (typeof Typed === 'function') {
+        subtitleType()
+      } else {
+        btf.getScript('https://cdn.jsdelivr.net/npm/typed.js/dist/typed.umd.min.js').then(subtitleType)
+      }
+    } else {
+      subtitleType()
+    }
+  },
+  processSubtitle: (content, extraContents = []) => {
+    if (true) {
+      const sub = ["Welcome to 🥝のXiaoxiHome!","Hope you have a nice day!🍭🍭🍭"].slice()
+
+      if (extraContents.length > 0) {
+        sub.unshift(...extraContents)
+      }
+
+      if (typeof content === 'string') {
+        sub.unshift(content)
+      } else if (Array.isArray(content)) {
+        sub.unshift(...content)
+      }
+
+      sub.length > 0 && typedJSFn.init(sub)
+    } else {
+      document.getElementById('subtitle').textContent = typeof content === 'string' ? content :
+        (Array.isArray(content) && content.length > 0 ? content[0] : '')
+    }
+  }
+}
+btf.addGlobalFn('pjaxSendOnce', () => { typed.destroy() }, 'typedDestroy')
+</script><script>function subtitleType () {
+  typedJSFn.processSubtitle(["Welcome to 🥝のXiaoxiHome!","Hope you have a nice day!🍭🍭🍭"])
+}
+typedJSFn.run(subtitleType)</script></div><script src="xxxx"></script><script defer="defer" id="fluttering_ribbon" mobile="true" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-fluttering-ribbon.min.js"></script><script id="canvas_nest" defer="defer" color="0,0,255" opacity="0.7" zIndex="-1" count="99" mobile="true" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-nest.min.js"></script><script id="click-heart" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/click-heart.min.js" async="async" mobile="false"></script><script src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script><script>(() => {
+  const pjaxSelectors = ["head > title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show",".js-pjax"]
+
+  window.pjax = new Pjax({
+    elements: 'a:not([target="_blank"]):not([href="/music/"]):not([href="/no-pjax/"])',
+    selectors: pjaxSelectors,
+    cacheBust: false,
+    analytics: false,
+    scrollRestoration: false
+  })
+
+  const triggerPjaxFn = (val) => {
+    if (!val) return
+    Object.values(val).forEach(fn => fn())
+  }
+
+  document.addEventListener('pjax:send', () => {
+    // removeEventListener
+    btf.removeGlobalFnEvent('pjaxSendOnce')
+    btf.removeGlobalFnEvent('themeChange')
+
+    // reset readmode
+    const $bodyClassList = document.body.classList
+    if ($bodyClassList.contains('read-mode')) $bodyClassList.remove('read-mode')
+
+    triggerPjaxFn(window.globalFn.pjaxSend)
+  })
+
+  document.addEventListener('pjax:complete', () => {
+    btf.removeGlobalFnEvent('pjaxCompleteOnce')
+    document.querySelectorAll('script[data-pjax]').forEach(item => {
+      const newScript = document.createElement('script')
+      const content = item.text || item.textContent || item.innerHTML || ""
+      Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+      newScript.appendChild(document.createTextNode(content))
+      item.parentNode.replaceChild(newScript, item)
+    })
+
+    triggerPjaxFn(window.globalFn.pjaxComplete)
+  })
+
+  document.addEventListener('pjax:error', e => {
+    if (e.request.status === 404) {
+      const usePjax = true
+      true 
+        ? (usePjax ? pjax.loadUrl('/404.html') : window.location.href = '/404.html')
+        : window.location.href = e.request.responseURL
+    }
+  })
+})()</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"live2d-widget-model-wanko"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"log":false});</script></body></html>
